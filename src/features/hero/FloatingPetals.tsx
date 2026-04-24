@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 const petal = '/images/petal.png';
 
@@ -12,19 +11,15 @@ type PetalConfig = {
     delay: number;
 };
 
-export const FloatingPetals = () => {
-    const petals = useMemo<PetalConfig[]>(
-        () =>
-            Array.from({ length: PETAL_COUNT }, (_, id) => ({
-                id,
-                startX: Math.random() * 100,
-                drift: (Math.random() - 0.5) * 40,
-                duration: 12 + Math.random() * 10,
-                delay: Math.random() * 5,
-            })),
-        []
-    );
+const petals: PetalConfig[] = Array.from({ length: PETAL_COUNT }, (_, id) => ({
+    id,
+    startX: Math.random() * 100,
+    drift: (Math.random() - 0.5) * 40,
+    duration: 12 + Math.random() * 10,
+    delay: Math.random() * 5,
+}));
 
+export const FloatingPetals = () => {
     return (
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {petals.map(({ id, startX, drift, duration, delay }) => (
