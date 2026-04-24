@@ -1,8 +1,10 @@
 import { Section } from "@/components/layout";
 import { ScrollIndicator } from "@/components/ui";
 import { motion } from "framer-motion";
-import heroUrl from "@/assets/images/wedding-hero.png";
 import { FloatingPetals } from "./FloatingPetals";
+
+const heroUrl =
+  "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=2000&auto=format";
 
 export const Hero = () => {
   return (
