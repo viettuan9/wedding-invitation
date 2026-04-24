@@ -3,8 +3,7 @@ import { ScrollIndicator } from "@/components/ui";
 import { motion } from "framer-motion";
 import { FloatingPetals } from "./FloatingPetals";
 
-const heroUrl =
-  "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=2000&auto=format";
+const heroUrl = "/images/wedding-hero.png";
 
 export const Hero = () => {
   return (

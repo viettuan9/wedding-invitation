@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import petal from '@/assets/images/petal.png';
+const petal = '/images/petal.png';
 
 const PETAL_COUNT = 40;
 

@@ -6,12 +6,12 @@ const COUPLE_INFO = [
   {
     name: "Nguyễn Việt Tuấn",
     role: "Groom",
-    image: "./src/assets/images/chure.png",
+    image: "/images/chure.png",
   },
   {
     name: "Trần Thị Vân",
     role: "Bride",
-    image: "./src/assets/images/codau.png",
+    image: "/images/codau.png",
   },
 ] as const;
 
