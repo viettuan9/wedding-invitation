@@ -1,5 +1,6 @@
 import { Container } from "./Container";
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "@phosphor-icons/react";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -34,7 +35,7 @@ export const Footer = () => {
             </span>
             <p className="font-display text-[13px] text-[rgba(38,37,30,0.6)]">
               Hanoi, Vietnam <br />
-              Ngày 24 tháng 5 năm 2026
+              Ngày 3 tháng 5 năm 2026
             </p>
           </div>
 
@@ -56,24 +57,10 @@ export const Footer = () => {
             </span>
             <button
               onClick={scrollToTop}
-              className="font-display text-[13px] text-[#26251e] hover:text-[#f54e00] transition-colors inline-flex items-center gap-1 md:justify-end"
+              aria-label="Back to top"
+              className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-[rgba(38,37,30,0.15)] text-[#26251e] hover:text-[#f54e00] hover:border-[rgba(38,37,30,0.35)] transition-colors md:self-end"
             >
-              <span>Back to top</span>
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
-                fill="none"
-                className="-rotate-45"
-              >
-                <path
-                  d="M1 11L11 1M11 1H1M11 1V11"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <ArrowUpRight size={20} weight="regular" className="-rotate-45" />
             </button>
           </div>
         </div>
