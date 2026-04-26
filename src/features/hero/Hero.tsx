@@ -27,7 +27,7 @@ export const Hero = () => {
       {/* Scroll indicator */}
       <ScrollIndicator />
 
-      <FloatingPetals />
+      {import.meta.env.VITE_OPEN_PETALS == "true" && <FloatingPetals />}
     </Section>
   );
 };

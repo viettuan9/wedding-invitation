@@ -2,7 +2,7 @@ import { Toaster } from "react-hot-toast";
 import { useState } from "react";
 import "./App.css";
 import { Footer, Header } from "./components/layout";
-import { EventDetails, Hero, MapLocation } from "./features";
+import { EventDetails, Hero, MapLocation, PhotoGallery } from "./features";
 
 function App() {
   const [isRsvpOpen, setIsRsvpOpen] = useState(false);
@@ -22,7 +22,7 @@ function App() {
 
         <MapLocation />
 
-        {/* <PhotoGallery /> */}
+        {import.meta.env.VITE_OPEN_GALLERY == "true" && <PhotoGallery />}
       </main>
 
       <Footer />
