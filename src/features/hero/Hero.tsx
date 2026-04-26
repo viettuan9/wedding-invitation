@@ -21,7 +21,7 @@ export const Hero = () => {
           style={{
             backgroundImage: `url('${heroUrl}')`,
             backgroundOrigin: "content-box",
-            backgroundRepeat: "revert",
+            backgroundRepeat: "repeat-x",
           }}
         />
         {/* Warm Overlay: Tạo cảm giác ảnh cũ, sang trọng thay vì gradient đen */}
