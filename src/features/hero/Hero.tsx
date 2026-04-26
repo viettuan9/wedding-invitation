@@ -19,8 +19,9 @@ export const Hero = () => {
           transition={{ duration: 2, ease: "easeOut" }}
           className="absolute inset-0 bg-cover bg-position-[20%_15%] pt-[52px]"
           style={{
-            backgroundImage: `url('${heroUrl}'),background-origin: content-box;
-    background-repeat: revert;`,
+            backgroundImage: `url('${heroUrl}')`,
+            backgroundOrigin: "content-box",
+            backgroundRepeat: "revert",
           }}
         />
         {/* Warm Overlay: Tạo cảm giác ảnh cũ, sang trọng thay vì gradient đen */}
