@@ -13,7 +13,7 @@ export const MapLocation = () => {
   const openMapLink = "https://maps.app.goo.gl/2xzSskUQPvK8KSq79";
 
   return (
-    <Section id="location" className="bg-[#ffffff] text-[#26251e] py-20 px-6">
+    <Section id="location" className="bg-[#ffffff] text-[#26251e] py-20">
       {/* Header: Căn chỉnh theo style báo chí */}
       <div className="text-center mb-12">
         <motion.span

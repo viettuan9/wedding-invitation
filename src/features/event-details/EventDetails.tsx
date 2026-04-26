@@ -73,10 +73,7 @@ export const EventDetails = ({
   const [groom, bride] = COUPLE_INFO;
 
   return (
-    <Section
-      id="event"
-      className="bg-[#f2f1ed] text-[#26251e] py-24 px-3 md:px-6"
-    >
+    <Section id="event" className="bg-[#f2f1ed] text-[#26251e] py-24">
       {/* Header Section */}
       <div className="text-center mb-16">
         <motion.p
