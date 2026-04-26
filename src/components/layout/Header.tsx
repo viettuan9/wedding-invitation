@@ -2,7 +2,14 @@ import { useCountdown } from "@/hooks/useCountdown";
 import { Container } from "./Container";
 import { motion } from "framer-motion";
 import { TimeBox } from "../ui";
-import { CalendarBlank, EnvelopeSimple, MapPin } from "@phosphor-icons/react";
+import {
+  CalendarBlank,
+  EnvelopeSimple,
+  List,
+  MapPin,
+  X,
+} from "@phosphor-icons/react";
+import { useState } from "react";
 
 const links = [
   { label: "Sự kiện", href: "#event", icon: CalendarBlank },
@@ -23,6 +30,7 @@ type HeaderProps = {
 };
 
 export const Header = ({ onOpenRsvp }: HeaderProps) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { days, hours, minutes, seconds, isExpired } =
     useCountdown(weddingDate);
   const countdown = { days, hours, minutes, seconds };
@@ -30,8 +38,8 @@ export const Header = ({ onOpenRsvp }: HeaderProps) => {
   return (
     <header className="fixed top-0 w-full z-50">
       <Container className="pt-4">
-        <div className="px-4 py-2 md:px-7 md:py-4 rounded-2xl border border-white/60 bg-white/75 backdrop-blur-xl shadow-[0_10px_30px_rgba(15,23,42,0.08)]">
-          <div className="flex items-start md:items-center justify-between gap-3">
+        <div className="relative px-4 py-2 md:px-7 md:py-4 rounded-2xl border border-white/60 bg-white/75 backdrop-blur-xl shadow-[0_10px_30px_rgba(15,23,42,0.08)]">
+          <div className="flex items-center justify-between gap-3">
             {/* Logo */}
             <a href="#hero" className="group leading-tight shrink-0">
               <p className="font-playfair text-base md:text-xl text-rose-400 tracking-wide">
@@ -42,29 +50,17 @@ export const Header = ({ onOpenRsvp }: HeaderProps) => {
               </p>
             </a>
 
-            {/* Mobile countdown: nhỏ gọn ở hàng 1 */}
-            {!isExpired && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="grid grid-cols-4 gap-1.5 md:hidden"
-              >
-                {COUNTDOWN_UNITS.map(({ label, key }) => (
-                  <div
-                    key={key}
-                    className="min-w-10 rounded-lg border border-slate-200 bg-white/70 px-1.5 py-1 text-center"
-                  >
-                    <p className="text-[11px] leading-none font-semibold text-slate-700">
-                      {String(countdown[key]).padStart(2, "0")}
-                    </p>
-                    <p className="mt-0.5 text-[9px] leading-none uppercase text-slate-500">
-                      {label}
-                    </p>
-                  </div>
-                ))}
-              </motion.div>
-            )}
+            {/* Mobile menu trigger */}
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              className="inline-flex md:hidden h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/90 text-slate-700 hover:text-rose-500 hover:border-rose-200 transition-colors"
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-header-nav"
+              aria-label={isMobileMenuOpen ? "Đóng menu" : "Mở menu"}
+            >
+              {isMobileMenuOpen ? <X size={18} /> : <List size={18} />}
+            </button>
 
             {/* Desktop countdown */}
             {!isExpired && (
@@ -81,7 +77,7 @@ export const Header = ({ onOpenRsvp }: HeaderProps) => {
             )}
 
             {isExpired && (
-              <p className="text-sm md:text-base text-slate-700">
+              <p className="hidden md:block text-sm md:text-base text-slate-700">
                 Hôm nay là ngày cưới của chúng tôi ❤️
               </p>
             )}
@@ -110,28 +106,53 @@ export const Header = ({ onOpenRsvp }: HeaderProps) => {
             </nav>
           </div>
 
-          {/* Navigation: mobile ở hàng 2 */}
-          <nav className="mt-2 md:mt-3 md:hidden">
-            <ul className="grid grid-cols-3 gap-2 text-sm">
+          {/* Mobile navigation overlay */}
+          <motion.nav
+            id="mobile-header-nav"
+            initial={false}
+            animate={{
+              opacity: isMobileMenuOpen ? 1 : 0,
+              pointerEvents: isMobileMenuOpen ? "auto" : "none",
+            }}
+            transition={{ duration: 0.2 }}
+            className="absolute inset-0 z-20 md:hidden rounded-2xl border border-white/60 bg-white/95 backdrop-blur-xl"
+          >
+            <div className="flex items-center justify-between px-4 py-2 border-b border-slate-100">
+              <p className="font-playfair text-base text-rose-400 tracking-wide">
+                Tuấn & Vân
+              </p>
+              <button
+                type="button"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 hover:text-rose-500 hover:border-rose-200 transition-colors"
+                aria-label="Đóng menu"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {/* Mobile navigation links */}
+            <ul className="absolute inset-x-0 bottom-0 px-2 py-2 grid grid-cols-3 gap-2 text-sm top-0 left-0">
               {links.map((link) => (
                 <li key={link.href} className="min-w-0">
                   <a
                     href={link.href}
                     onClick={(e) => {
+                      setIsMobileMenuOpen(false);
                       if (link.href === "#rsvp" && onOpenRsvp) {
                         e.preventDefault();
                         onOpenRsvp();
                       }
                     }}
-                    className="inline-flex w-full justify-center items-center px-2 h-7 rounded-full text-slate-600 bg-amber-50 hover:text-rose-500 hover:bg-rose-50 transition-colors text-xs"
+                    className="inline-flex w-full justify-center items-center px-2 h-9 rounded-full text-slate-600 bg-amber-50 hover:text-rose-500 hover:bg-rose-50 transition-colors text-[10px]"
                   >
-                    <link.icon size={12} weight="regular" className="mr-1" />
+                    <link.icon size={13} weight="regular" className="mr-1.5" />
                     {link.label}
                   </a>
                 </li>
               ))}
             </ul>
-          </nav>
+          </motion.nav>
         </div>
       </Container>
     </header>

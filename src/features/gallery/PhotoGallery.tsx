@@ -24,12 +24,15 @@ export const PhotoGallery = () => {
               className="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer"
               onClick={() => setIndex(idx)}
             >
-              <img
-                src={image.thumbnail || image.src}
-                alt={image.alt || `Wedding photo ${idx + 1}`}
-                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-                loading="lazy"
-              />
+              <picture>
+                <source media="(max-width: 639px)" srcSet={image.src} />
+                <img
+                  src={image.thumbnail || image.src}
+                  alt={image.alt || `Wedding photo ${idx + 1}`}
+                  className="w-full h-auto sm:h-64 object-contain sm:object-cover object-center bg-white sm:hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+              </picture>
             </div>
           ))}
         </div>

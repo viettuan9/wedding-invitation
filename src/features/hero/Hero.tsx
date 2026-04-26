@@ -17,15 +17,13 @@ export const Hero = () => {
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
           transition={{ duration: 2, ease: "easeOut" }}
-          className="absolute inset-0 bg-cover bg-position-[20%_15%] pt-[52px]"
+          className="absolute inset-0 bg-cover bg-position-[20%_15%]"
           style={{
             backgroundImage: `url('${heroUrl}')`,
-            backgroundOrigin: "content-box",
-            backgroundRepeat: "repeat-x",
           }}
         />
         {/* Warm Overlay: Tạo cảm giác ảnh cũ, sang trọng thay vì gradient đen */}
-        <div className="absolute inset-0 bg-[#f2f1ed]/30 backdrop-sepia-[0.2]" />
+        {/* <div className="absolute inset-0 bg-[#f2f1ed]/30 backdrop-sepia-[0.2]" /> */}
       </div>
 
       {/* Scroll indicator */}
