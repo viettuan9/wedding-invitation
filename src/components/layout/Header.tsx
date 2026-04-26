@@ -5,6 +5,7 @@ import { TimeBox } from '../ui';
 import {
     CalendarBlank,
     EnvelopeSimple,
+    Heart,
     List,
     MapPin,
     X,
@@ -45,8 +46,8 @@ export const Header = ({ onOpenRsvp }: HeaderProps) => {
                             href="#hero"
                             className="group leading-tight shrink-0"
                         >
-                            <p className="font-playfair text-base md:text-xl text-rose-400 tracking-wide">
-                                Tuấn & Vân
+                            <p className="flex items-center gap-2 font-playfair text-base md:text-xl text-rose-400 tracking-wide">
+                                Tuấn <Heart size={10} /> Vân
                             </p>
                             <p className="text-[8px] md:text-xs uppercase tracking-[0.24em] text-slate-400 group-hover:text-rose-500 transition-colors">
                                 Wedding Day
@@ -138,8 +139,8 @@ export const Header = ({ onOpenRsvp }: HeaderProps) => {
                         className="absolute inset-0 z-20 md:hidden rounded-2xl border border-white/60 bg-white/95 backdrop-blur-xl"
                     >
                         <div className="flex items-center justify-between px-4 py-2 border-b border-slate-100">
-                            <p className="font-playfair text-base text-rose-400 tracking-wide">
-                                Tuấn & Vân
+                            <p className="flex items-center gap-2 font-playfair text-base md:text-xl text-rose-400 tracking-wide">
+                                Tuấn <Heart size={10} /> Vân
                             </p>
                             <button
                                 type="button"
